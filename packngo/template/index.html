@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PacknGo - Home</title>
+   
+    <style>
+ /* Reset some default styles */
+body, h1, h3, p, ul, li, table, th, td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff); /* Light blue to white gradient */
+    color: #333333; /* Dark gray text for readability */
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.logo a {
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #03a9f4; /* Light blue */
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #03a9f4; /* Light blue on hover */
+}
+
+/* Main content styling */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 2rem;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 2s ease-in forwards; /* Fade-in animation */
+}
+
+.welcome-message {
+    font-size: 2.5rem;
+    color: #03a9f4; /* Light blue */
+    font-weight: bold;
+}
+
+.sub-message {
+    font-size: 1.5rem;
+    color: #6a6a6a; /* Medium gray */
+    margin-top: 1rem;
+}
+
+/* Footer styling */
+footer {
+    padding: 1rem;
+    background-color: #f5f5dc; /* Beige background */
+    text-align: center;
+    color: #6a6a6a; /* Medium gray for footer text */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
+ 
+
+ 
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="#">PacknGo</a>
+        </div>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/book">Booking</a></li>
+                <li><a href="/read_book">Show Booking Data</a></li>
+                <li><a href="/order_history">Order History</a></li>
+                {% else %}
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="container">
+            <h1 class="welcome-message">Welcome to PacknGo</h1>
+            <p class="sub-message">We deliver the best service in town</p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 PacknGo. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

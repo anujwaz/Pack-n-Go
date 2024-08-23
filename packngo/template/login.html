@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+}
+
+h1 {
+    color: #ff7e5f;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 36px;
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    text-align: center;
+}
+
+table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+    margin-top: 100px; /* Push the table down below the h1 */
+}
+
+th {
+    padding: 10px;
+    font-size: 18px;
+    color: #555555;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #feb47b;
+    outline: none;
+}
+
+input[type="submit"] {
+    background-color: #ff7e5f;
+    color: white;
+    border: none;
+    padding: 10px 150px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #feb47b;
+    transform: translateY(-3px);
+}
+
+h3 {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #feb47b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1 align="center">LOGIN</h1>
+    <table border="2" align="center">
+        <form method="POST">
+            {% csrf_token %}
+
+            <tr>
+                <th>Username</th>
+                <td><input type="text" name="username" id=""></td>
+            </tr>
+
+            <tr>
+                <th>Password</th>
+                <td><input type="password" name="password" id=""></td>
+            </tr>
+
+            <tr>
+                <th colspan="2" align="center"><input type="submit" value="submit"></th>
+            </tr>
+        </form>
+    </table>
+
+    <h3 align="center">{{ error }}</h3>
+    <h3 align="center"><a href="/forgot_password">Forgot Password</a></h3>
+</body>
+</html>

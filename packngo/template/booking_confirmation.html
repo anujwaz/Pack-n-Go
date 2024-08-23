@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        /* Overall page styling */
+body {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    min-height: 100vh;
+}
+
+/* Centering the form */
+table {
+    border-collapse: collapse;
+    background-color: #ffffff; /* White background for the table */
+    padding: 2rem;
+    border-radius: 12px; /* Rounded corners for the table */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    width: 500px; /* Increased width */
+    max-width: 90%; /* Responsive width */
+    transition: transform 0.3s ease; /* Smooth transition for form */
+}
+
+/* Heading styling */
+h1 {
+    color: #333; /* Dark gray for the heading */
+    margin-bottom: 1rem; /* Space below heading */
+    padding-top: 200px;
+}
+
+/* Paragraph styling */
+p {
+    color: #666; /* Medium gray for paragraphs */
+    margin: 0.5rem 0; /* Space around paragraphs */
+}
+
+/* Table styling */
+th, td {
+    padding: 0.75rem 1rem; /* Padding inside table cells */
+    text-align: left; /* Align text to the left */
+}
+
+th {
+    background-color: #f0f0f0; /* Light gray background for table headers */
+    font-weight: bold; /* Bold font for headers */
+}
+
+td {
+    border-bottom: 1px solid #ddd; /* Light gray border for rows */
+}
+
+/* Submit button styling */
+input[type="submit"] {
+    background-color: #03a9f4; /* Light blue background */
+    color: #ffffff; /* White text */
+    padding: 0.75rem 1.5rem; /* Padding */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 1rem; /* Font size */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scaling */
+}
+
+input[type="submit"]:hover {
+    background-color: #0288d1; /* Darker blue background on hover */
+    transform: scale(1.05); /* Slightly increase button size */
+}
+    
+
+/* Header styling */
+header {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.logo a {
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #03a9f4; /* Light blue */
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #03a9f4; /* Light blue on hover */
+}
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="#">PacknGo</a>
+        </div>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/book">Booking</a></li>
+                <li><a href="/read_book">Show Booking Data</a></li>
+                <li><a href="/order_history">Order History</a></li>
+                {% else %}
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <table align="center" border="2">
+
+        <form method="POST">
+
+    <h1 align="center">Booking Confirmation</h1>
+    <p align="center">Thank you, {{ booking.name }}!</p>
+    <p align="center">Your booking has been confirmed.</p>
+    <p align="center"><strong>Details:</strong></p>
+
+       <tr>
+        <th>Vehicle:</th>
+        <td> {{ booking.vehicle }}</td>
+       </tr>
+
+       <tr>
+        <th>Pick up Location:</th>
+        <td> {{ booking.pickup_loc }}</td>
+       </tr>
+
+       <tr>
+        <th>Drop Location:</th>
+        <td> {{ booking.drop_loc }}</td>
+       </tr>
+
+       <tr>
+        <th>Phone No:</th>
+        <td>{{ booking.phone_no }}</td>
+       </tr>
+
+       <tr>
+        <th>Price: </th>
+        <td> Rs. {{ booking.price }}</td>
+       </tr>
+        <!-- <th>Vehicle: {{ booking.vehicle }}</th>
+        <th>Pickup Location: {{ booking.pickup_loc }}</th>
+        <th>Drop Location: {{ booking.drop_loc }}</th>
+        <th>Phone Number: {{ booking.phone_no }}</th>
+        <th>Price: ${{ booking.price }}</th> -->
+    
+         </form>
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Vehicle</title>
+    <style>
+        /* Overall page styling */
+    body {
+        background: linear-gradient(135deg, #e0f7fa, #ffffff);
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: center; */
+        min-height: 100vh;
+    }
+
+    /* Centering the form and increasing box size */
+    table {
+        border-collapse: collapse;
+        background-color: #ffffff; /* White background for the table */
+        padding: 2rem;
+        border-radius: 12px; /* Rounded corners */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+        width: 80%; /* Increased width */
+        max-width: 800px; /* Maximum width */
+        margin: 1rem auto; /* Centering with margin */
+        transition: transform 0.3s ease; /* Smooth transition for scaling */
+    }
+
+    /* Heading styling */
+    h1 {
+        color: #333; /* Dark gray for the heading */
+        margin-bottom: 1rem; /* Space below heading */
+        padding-top: 200px;
+    }
+
+    /* Paragraph styling */
+    p {
+        color: #666; /* Medium gray for paragraphs */
+        margin: 0.5rem 0; /* Space around paragraphs */
+    }
+
+    /* Table styling */
+    th, td {
+        padding: 12px; /* Padding inside table cells */
+        text-align: left; /* Align text to the left */
+        border: 1px solid #ddd; /* Light gray border for cells */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Light gray background for headers */
+        font-weight: bold; /* Bold font for headers */
+    }
+
+    /* Button styling */
+    button {
+        background-color: #03a9f4; /* Light blue background */
+        color: #ffffff; /* White text */
+        padding: 0.75rem 1.5rem; /* Padding */
+        border: none;
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer;
+        font-size: 1rem; /* Font size */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scaling */
+    }
+
+    button:hover {
+        background-color: #0288d1; /* Darker blue on hover */
+        transform: scale(1.05); /* Slightly increase button size */
+    }
+
+    /* Header styling */
+header {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.logo a {
+    text-decoration: none;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #03a9f4; /* Light blue */
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #03a9f4; /* Light blue on hover */
+}
+    
+        </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="#">PacknGo</a>
+        </div>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/book">Booking</a></li>
+                <li><a href="/read_book">Show Booking Data</a></li>
+                <li><a href="/order_history">Order History</a></li>
+                {% else %}
+                <li><a href="/register">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    
+
+    <h1 align="center">Select a Vehicle</h1>
+    <p align="center">Name: {{ booking.name }}</p>
+    <p align="center">Pickup Location: {{ booking.pickup_loc }}</p>
+    <p align="center">Drop Location: {{ booking.drop_loc }}</p>
+    <p align="center">Phone Number: {{ booking.phone_no }}</p>
+
+    
+
+    <form method="POST">
+        {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <th>Vehicle</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+            {% for vehicle, price in vehicle_prices %}
+            <tr>
+                <td>{{ vehicle }}</td>
+                <td>Rs.{{ price }}</td>
+                <td><button type="submit" name="vehicle" value="{{ vehicle }}">Book</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+</body>
+</html>
